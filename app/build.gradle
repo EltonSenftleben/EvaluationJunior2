@@ -1,0 +1,128 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    namespace 'com.example.evaluationjunior_2'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.example.evaluationjunior_2"
+        minSdk 26
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+
+        /*freeCompilerArgs += [
+                "-Xallow-jvm-ir-dependencies",
+                "-P",
+                "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"
+        ]*/
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.4.2'
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
+    implementation 'androidx.activity:activity-compose:1.6.1'
+    implementation "androidx.compose.ui:ui:$compose_version"
+    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
+    implementation 'androidx.compose.material3:material3:1.1.0-alpha07'
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation project(path: ':web')
+    implementation project(path: ':database')
+    implementation project(path: ':domain')
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+    implementation 'com.google.android.gms:play-services-fido:19.0.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$vRetrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$vRetrofit"
+    implementation 'com.google.code.gson:gson:2.9.1'
+
+    //data store
+    implementation 'androidx.datastore:datastore-preferences:1.0.0'
+
+    //hilt
+    implementation "com.google.dagger:hilt-android:2.45"
+    kapt "com.google.dagger:hilt-android-compiler:$vHilt"
+    implementation "androidx.hilt:hilt-navigation-compose:$vHiltNavCompose"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$vHilt"
+    kaptAndroidTest "com.google.dagger:hilt-compiler:$vHilt"
+    testImplementation "com.google.dagger:hilt-android-testing:$vHilt"
+    kaptTest "com.google.dagger:hilt-compiler:$vHilt"
+
+    //Room
+    implementation("androidx.room:room-runtime:$vRoom")
+    annotationProcessor("androidx.room:room-compiler:$vRoom")
+    kapt("androidx.room:room-compiler:$vRoom")
+    implementation("androidx.room:room-ktx:$vRoom")
+    testImplementation("androidx.room:room-testing:$vRoom")
+
+    // Gson
+    implementation "com.google.code.gson:gson:$vGson"
+
+    //Navigation
+    implementation "androidx.navigation:navigation-compose:$vNavCompose"
+
+    //Permissions
+    implementation "com.google.accompanist:accompanist-permissions:$vPermissions"
+
+    //Livedata
+    implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
+
+    //Coil
+    implementation("io.coil-kt:coil-compose:2.2.2")
+    implementation "io.coil-kt:coil-gif:2.1.0"
+
+    //Glide
+    implementation "com.github.bumptech.glide:glide:$vGlide"
+
+    //Splash screen
+    implementation "androidx.core:core-splashscreen:$vSplash"
+
+    //data store
+    implementation 'androidx.datastore:datastore-preferences:1.0.0'
+}

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">EvaluationJunior-2</string>
+
+    //Bottom bar navigation
+    <string name="bottom_bar_navigation_upcoming_title">Próximamente</string>
+    <string name="bottom_bar_navigation_popular_title">Populares</string>
+    <string name="bottom_bar_navigation_rating_title">Valoradas</string>
+
+    //Detail Title
+    <string name="movie_detail_overview">Resumen</string>
+    <string name="movie_detail_popularity">Popularidad: </string>
+    <string name="movie_detail_vote">Rating: </string>
+</resources>
