@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             EvaluationJunior2Theme {
                 val navController = rememberNavController()
-                Scaffold(modifier = Modifier,) {
+                Scaffold(modifier = Modifier, topBar = { actionBar?.hide()},) {
                     Navigation(navController = navController)
                 }
             }

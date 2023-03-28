@@ -8,7 +8,7 @@ import com.example.domain.models.Movie
 
 interface LocalMovieRepository {
 
-    //PopularMovies
+    // PopularMovies
     fun getAllPopularMovies(): LiveData<List<PopularMovieEntity>>
 
     fun getPopularMovie(id: Int): LiveData<PopularMovieEntity>

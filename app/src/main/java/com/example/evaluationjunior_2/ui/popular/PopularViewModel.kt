@@ -22,7 +22,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PopularViewModel @Inject constructor(
     private val localMovieRepository: LocalMovieRepository,
-    private val movieRepository: MovieRepository
+    private val movieRepository: MovieRepository,
 ) : ViewModel() {
 
     private val _isLoading = MutableLiveData(false)
@@ -40,7 +40,6 @@ class PopularViewModel @Inject constructor(
                     _isLoading.postValue(true)
                 }
                 is NetworkResult.Success -> {
-
                     val movieList = it.data?.movieList ?: emptyList()
                     val movieListWithImages = mutableListOf<PopularMovieEntity>()
                     for (movie in movieList) {
@@ -49,9 +48,9 @@ class PopularViewModel @Inject constructor(
                                 ImageRequest.Builder(context)
                                     .data(APIConstants.prefixImage + movie.imageUrl)
                                     .size(300, 400) // Tamaño máximo de la imagen
-                                    .build()
+                                    .build(),
                             ).drawable?.toBitmap()
-                            bitmap?.let {Convert.bitmapToByteArray(it) }
+                            bitmap?.let { Convert.bitmapToByteArray(it) }
                         } catch (e: Exception) {
                             null
                         }
@@ -63,8 +62,8 @@ class PopularViewModel @Inject constructor(
                                 popularity = movie.popularity,
                                 imageUrl = movie.imageUrl,
                                 image = imageByteArray,
-                                overview = movie.overview
-                        )
+                                overview = movie.overview,
+                            ),
                         )
                     }
                     localMovieRepository.insertAllPopulars(movieListWithImages)
@@ -73,5 +72,4 @@ class PopularViewModel @Inject constructor(
             }
         }
     }
-
 }

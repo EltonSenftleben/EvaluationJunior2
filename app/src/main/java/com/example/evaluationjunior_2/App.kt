@@ -6,7 +6,7 @@ import com.example.evaluationjunior_2.ui.navigation.Screens
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class App: Application() {
+class App : Application() {
     companion object{
         val destinations = listOf(
             BottomNavigationDestination(

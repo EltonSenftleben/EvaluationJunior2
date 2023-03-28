@@ -49,18 +49,17 @@ fun PopularScreen(navController: NavController, viewModel: PopularViewModel = hi
             PopularContent(moviesPopularList, context, navController)
         }
     }
-
 }
 
 @Composable
 fun PopularContent(moviesPopularList: List<PopularMovieEntity>, context: Context, navController: NavController) {
-    Log.e("TEST", "$moviesPopularList" )
+    Log.e("TEST", "$moviesPopularList")
 
-    var list by remember { mutableStateOf(moviesPopularList)}
+    var list by remember { mutableStateOf(moviesPopularList) }
 
     LazyVerticalGrid(
         columns = GridCells.Adaptive(minSize = 165.dp),
-        modifier = Modifier.padding(horizontal = 10.dp, vertical = 20.dp)
+        modifier = Modifier.padding(horizontal = 10.dp, vertical = 20.dp),
     ) {
         items(list) { movie ->
             PopularImageLoaderList(movie = movie, context = context, navController = navController)
@@ -68,17 +67,15 @@ fun PopularContent(moviesPopularList: List<PopularMovieEntity>, context: Context
 
         item { Spacer(modifier = Modifier.height(80.dp)) }
     }
-
 }
 
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun PopularImageLoaderList(movie: PopularMovieEntity, context: Context, navController: NavController) {
-
-
     if (!Conecction.isInternetAvailable(context)) {
         if (movie.image != null) {
-            val localImage = rememberCoroutineScope().run {Dispatchers.IO
+            val localImage = rememberCoroutineScope().run {
+                Dispatchers.IO
                 mutableStateOf(BytearrayToPainter(movie.image!!))
             }
             Image(
@@ -92,9 +89,9 @@ fun PopularImageLoaderList(movie: PopularMovieEntity, context: Context, navContr
                     },
                 painter = localImage.value,
                 contentDescription = "",
-                contentScale = ContentScale.Inside
+                contentScale = ContentScale.Inside,
             )
-        } else{
+        } else {
             Image(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -102,7 +99,7 @@ fun PopularImageLoaderList(movie: PopularMovieEntity, context: Context, navContr
                     .padding(vertical = 20.dp),
                 painter = painterResource(id = R.drawable.img_no_image),
                 contentDescription = "",
-                contentScale = ContentScale.Inside
+                contentScale = ContentScale.Inside,
             )
         }
     } else {
@@ -115,18 +112,18 @@ fun PopularImageLoaderList(movie: PopularMovieEntity, context: Context, navContr
                     App.navigation[Params.MOVIE] = movie
                     navController.navigate(Screens.POPULAR_DETAIL_SCREEN)
                 },
-            painter = rememberAsyncImagePainter(model = ImageRequest.Builder(context)
-                .data(data = APIConstants.prefixImage + movie.imageUrl)
-                .apply {
-                    error(R.drawable.img_no_image)
-                    memoryCachePolicy(CachePolicy.DISABLED)
-                    diskCachePolicy(CachePolicy.DISABLED)
-                }
-                .build()
+            painter = rememberAsyncImagePainter(
+                model = ImageRequest.Builder(context)
+                    .data(data = APIConstants.prefixImage + movie.imageUrl)
+                    .apply {
+                        error(R.drawable.img_no_image)
+                        memoryCachePolicy(CachePolicy.DISABLED)
+                        diskCachePolicy(CachePolicy.DISABLED)
+                    }
+                    .build(),
             ),
             contentDescription = "",
-            contentScale = ContentScale.Inside
+            contentScale = ContentScale.Inside,
         )
     }
 }
-
