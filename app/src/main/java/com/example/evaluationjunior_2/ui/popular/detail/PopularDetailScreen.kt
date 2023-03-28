@@ -67,6 +67,9 @@ fun PopularDetailContent(movie: PopularMovieEntity?, context: Context, viewModel
         if (movie != null) {
             PopularImageLoaderDetail(movie = movie, context = context)
         }
+        //Comentario de prueba
+        //otro comentario
+        //Comentario pero de rate-movie2
 
         Spacer(modifier = Modifier.height(10.dp))
 
